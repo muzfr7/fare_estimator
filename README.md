@@ -110,3 +110,9 @@ Issue following command to remove all generated files: `./bin/fareestimatorcli`,
 ```bash
 make clean
 ```
+
+# Notes
+- Layered architecture is used so that this app can scale if more resources and time is added.
+- Handler in cmd/cli/main.go file could be moved to presentation layer instead.
+- Fare estimation service has O(n²) complexity which can possibly be reduced! it may not have a bigger hit because of rideChan however I had to point it out!
+- Test coverage could be improved.
