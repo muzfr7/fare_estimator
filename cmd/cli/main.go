@@ -13,4 +13,16 @@ func main() {
 		fmt.Println("file parameter is required.")
 		os.Exit(1)
 	}
+func mergeErrorChannels(channels ...<-chan error) <-chan error {
+	errChan := make(chan error)
+
+	for _, channel := range channels {
+		go func(ch <-chan error) {
+			for err := range ch {
+				errChan <- err
+			}
+		}(channel)
+	}
+
+	return errChan
 }
