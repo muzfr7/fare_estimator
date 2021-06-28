@@ -81,8 +81,8 @@ What's includes in each layer?
 - **Infrastructure**: include infra related stuff, e-g: fs, mappers, repositories, clients etc 
 
 ## Setup
+Clone this repository somewhere on your computer and make sure you have at-least `go1.16` installed.
 
-Clone this repository somewhere on your computer
 ```bash
 git clone git@github.com:muzfr7/fare_estimator.git
 ```
