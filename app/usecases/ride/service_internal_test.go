@@ -11,7 +11,10 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// TestNewService is a unit test for NewService method.
 func TestNewService(t *testing.T) {
+	t.Parallel()
+
 	tests := []struct {
 		name string
 		want Service
