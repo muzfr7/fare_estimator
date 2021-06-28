@@ -114,5 +114,5 @@ make clean
 # Notes
 - Layered architecture is used so that this app can scale if more resources and time is added.
 - Handler in cmd/cli/main.go file could be moved to presentation layer instead.
-- Fare estimation service has O(n²) complexity which can possibly be reduced! it may not have a bigger hit because of rideChan however I had to point it out!
+- Fare estimation service has O(n²) complexity which can possibly be reduced!
 - Test coverage could be improved.
