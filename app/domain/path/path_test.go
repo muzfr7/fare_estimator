@@ -33,6 +33,7 @@ func TestIsDayTime(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			got := tc.path.IsDayTime()
+
 			assert.Equal(t, tc.expected, got)
 		})
 	}

@@ -32,36 +32,26 @@ func TestParseRow(t *testing.T) {
 		{
 			name:          "When row doesn't contain 4 elements",
 			row:           []string{"2", "35.355555"},
-			expectedID:    0,
-			expectedPath:  nil,
 			expectedError: fmt.Errorf("row doesn't contain 4 elements: %v", []string{"2", "35.355555"}),
 		},
 		{
 			name:          "When failed to convert ride id string into uint",
 			row:           []string{"abc", "37.964168", "23.726123", "1405595110"},
-			expectedID:    0,
-			expectedPath:  nil,
 			expectedError: fmt.Errorf("failed to convert ride id string into uint"),
 		},
 		{
 			name:          "When failed to convert latitude string into float",
 			row:           []string{"3", "abc", "23.726123", "1405595110"},
-			expectedID:    0,
-			expectedPath:  nil,
 			expectedError: fmt.Errorf("failed to convert latitude string into float"),
 		},
 		{
 			name:          "When failed to convert longitude string into float",
 			row:           []string{"3", "37.964168", "abc", "1405595110"},
-			expectedID:    0,
-			expectedPath:  nil,
 			expectedError: fmt.Errorf("failed to convert longitude string into float"),
 		},
 		{
 			name:          "When failed to convert timestamp string into int",
 			row:           []string{"3", "37.964168", "23.726123", "abc"},
-			expectedID:    0,
-			expectedPath:  nil,
 			expectedError: fmt.Errorf("failed to convert timestamp string into int"),
 		},
 	}
@@ -69,6 +59,7 @@ func TestParseRow(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			id, path, err := rideUsecase.ParseRow(tc.row)
+
 			if err == nil {
 				assert.Equal(t, tc.expectedID, id)
 				assert.Equal(t, tc.expectedPath, path)
