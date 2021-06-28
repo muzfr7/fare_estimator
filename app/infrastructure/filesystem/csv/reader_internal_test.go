@@ -11,7 +11,7 @@ import (
 func TestNewReader(t *testing.T) {
 	t.Parallel()
 
-	tests := []struct {
+	testCases := []struct {
 		name string
 		want Reader
 	}{
@@ -21,10 +21,10 @@ func TestNewReader(t *testing.T) {
 		},
 	}
 
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := NewReader(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NewReader(): %v, want: %v", got, tt.want)
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			if got := NewReader(); !reflect.DeepEqual(got, tc.want) {
+				t.Errorf("NewReader(): %v, want: %v", got, tc.want)
 			}
 		})
 	}

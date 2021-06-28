@@ -22,7 +22,7 @@ func TestEstimate(t *testing.T) {
 		ride rideDomain.Ride
 	}
 
-	tests := []struct {
+	testCases := []struct {
 		name         string
 		fields       fields
 		args         args
@@ -49,7 +49,7 @@ func TestEstimate(t *testing.T) {
 		},
 	}
 
-	for _, tc := range tests {
+	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			svc := fareUsecase.NewService(tc.fields.pathSVC)
 

@@ -20,7 +20,7 @@ func TestNewService(t *testing.T) {
 		pathSVC pathUsecase.Service
 	}
 
-	tests := []struct {
+	testCases := []struct {
 		name string
 		args args
 		want Service
@@ -34,10 +34,10 @@ func TestNewService(t *testing.T) {
 		},
 	}
 
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := NewService(tt.args.pathSVC); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NewService(): %v, want: %v", got, tt.want)
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			if got := NewService(tc.args.pathSVC); !reflect.DeepEqual(got, tc.want) {
+				t.Errorf("NewService(): %v, want: %v", got, tc.want)
 			}
 		})
 	}

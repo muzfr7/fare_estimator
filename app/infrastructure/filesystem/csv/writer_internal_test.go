@@ -11,7 +11,7 @@ import (
 func TestNewWriter(t *testing.T) {
 	t.Parallel()
 
-	tests := []struct {
+	testCases := []struct {
 		name string
 		want Writer
 	}{
@@ -21,10 +21,10 @@ func TestNewWriter(t *testing.T) {
 		},
 	}
 
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := NewWriter(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NewWriter(): %v, want: %v", got, tt.want)
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			if got := NewWriter(); !reflect.DeepEqual(got, tc.want) {
+				t.Errorf("NewWriter(): %v, want: %v", got, tc.want)
 			}
 		})
 	}
