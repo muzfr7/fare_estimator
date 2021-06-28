@@ -19,7 +19,7 @@ func TestCreate(t *testing.T) {
 		row []string
 	}
 
-	tests := []struct {
+	testCases := []struct {
 		name         string
 		args         args
 		expectedRide rideDomain.Ride
@@ -42,7 +42,7 @@ func TestCreate(t *testing.T) {
 		},
 	}
 
-	for _, tc := range tests {
+	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			svc := rideUsecase.NewService()
 
