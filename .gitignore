@@ -1,0 +1,9 @@
+.env
+
+bin/*
+!bin/.gitkeep
+
+.idea/
+.vscode/
+*sublime-project
+*sublime-workspace
