@@ -26,3 +26,34 @@ Amount when cab is idle <= 10km/h at anytime
 Standard flag amount is charged to the rides fare
     1.30, the minimum ride fare should be at least 3.47
 ```
+
+## Setup
+
+Clone this repository somewhere on your computer
+```bash
+git clone git@github.com:muzfr7/fare_estimator.git
+```
+
+> make sure you have `paths.csv` file in `testdata` directory, because it will be ingested directly for fare estimation.
+
+## Usage
+
+Before proceeding further, make sure to change directory into cloned `fare_estimator`
+
+### Build and Run
+```bash
+make run
+```
+> this will build and run `./bin/fareestimatorcli` ingesting `./testdata/paths.csv` file, to produce `./testdata/result.csv` file containing estimated fares for each ride.
+
+### Run tests
+```bash
+make tests
+```
+> this will also generate `./testdata/coverage.out` file, issue a `make coverage` command to view it in browser.
+
+### Cleanup
+Issue following command to remove all generated files: `./bin/fareestimatorcli`, `./testdata/result.csv` and `./testdata/coverage.out`
+```bash
+make clean
+```
