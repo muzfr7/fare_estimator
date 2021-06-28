@@ -114,5 +114,6 @@ make clean
 # Notes
 - Layered architecture is used so that this app can scale if more resources and time is added.
 - Handler in cmd/cli/main.go file could be moved to presentation layer instead.
-- Fare estimation service has O(n²) complexity which can possibly be reduced!
+- I think a more scalable version of this could be developed using messages instead of CSV file.
+- Fare estimation service has O(n²) complexity which can possibly be reduced, however, I could not given time constraint!
 - Test coverage could be improved.
