@@ -11,6 +11,8 @@ import (
 
 // TestCalculateDistance is a unit test for CalculateDistance method.
 func TestCalculateDistance(t *testing.T) {
+	t.Parallel()
+
 	type args struct {
 		startPath pathDomain.Path
 		endPath   pathDomain.Path
