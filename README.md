@@ -26,6 +26,59 @@ Amount when cab is idle <= 10km/h at anytime
 Standard flag amount is charged to the rides fare
     1.30, the minimum ride fare should be at least 3.47
 ```
+## Architecture
+
+I could have gone with Golang's standard project layout, however, I chose Domain Drive Design (DDD) whereby each layer has its own responsibility, considering scalability factor, it seemed a great fit.
+
+### Directory structure
+```
+├── app
+│   ├── domain
+│   │   ├── fare
+│   │   │   └── fare.go
+│   │   ├── path
+│   │   │   ├── path.go
+│   │   │   └── path_test.go
+│   │   └── ride
+│   │       └── ride.go
+│   ├── infrastructure
+│   │   └── filesystem
+│   │       └── csv
+│   │           ├── mocks
+│   │           ├── reader.go
+│   │           ├── reader_test.go
+│   │           ├── writer.go
+│   │           └── writer_test.go
+│   └── usecases
+│       ├── fare
+│       │   ├── mocks
+│       │   ├── service.go
+│       │   └── service_test.go
+│       ├── path
+│       │   ├── mocks
+│       │   ├── service.go
+│       │   └── service_test.go
+│       └── ride
+│           ├── mocks
+│           ├── service.go
+│           └── service_test.go
+├── cmd
+│   └── cli
+│       ├── main.go
+│       └── main_test.go
+├── bin
+├── testdata
+│   └── paths.csv
+├── go.mod
+├── go.sum
+├── Makefile
+└── README.md
+```
+
+What's includes in each layer?
+- **Domain**: include models entities etc
+- **Usecases**: include services
+- **Infrastructure**: include infra related stuff, e-g: fs, mappers, repositories, clients etc 
 
 ## Setup
 
@@ -40,7 +93,7 @@ git clone git@github.com:muzfr7/fare_estimator.git
 
 Before proceeding further, make sure to change directory into cloned `fare_estimator`
 
-### Build and Run
+### Build and run
 ```bash
 make run
 ```
