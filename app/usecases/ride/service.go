@@ -39,7 +39,7 @@ func (s *serviceImpl) Create(rowChan <-chan []string) (<-chan rideDomain.Ride, <
 
 		for row := range rowChan {
 			// parse current row
-			id, path, err := ParseRow(row)
+			id, path, err := parseRow(row)
 			if err != nil {
 				errChan <- fmt.Errorf("failed to parse row; error: %v", err)
 			}
@@ -71,7 +71,7 @@ func (s *serviceImpl) Create(rowChan <-chan []string) (<-chan rideDomain.Ride, <
 	return rideChan, errChan
 }
 
-func ParseRow(row []string) (uint64, *pathDomain.Path, error) {
+func parseRow(row []string) (uint64, *pathDomain.Path, error) {
 	if len(row) < 4 {
 		return 0, nil, fmt.Errorf("row doesn't contain 4 elements: %v", row)
 	}
