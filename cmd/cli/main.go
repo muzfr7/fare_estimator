@@ -7,7 +7,9 @@ import (
 
 	appCSV "github.com/muzfr7/fare_estimator/app/infrastructure/filesystem/csv"
 	fareUsecase "github.com/muzfr7/fare_estimator/app/usecases/fare"
+	pathUsecase "github.com/muzfr7/fare_estimator/app/usecases/path"
 	rideUsecase "github.com/muzfr7/fare_estimator/app/usecases/ride"
+	logger "github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -17,6 +19,19 @@ func main() {
 		fmt.Println("file parameter is required.")
 		os.Exit(1)
 	}
+
+	csvReader := appCSV.NewReader()
+	csvWriter := appCSV.NewWriter()
+
+	rideSVC := rideUsecase.NewService()
+	pathSVC := pathUsecase.NewService()
+	fareSVC := fareUsecase.NewService(pathSVC)
+
+	if err := handler(*file, csvReader, csvWriter, rideSVC, fareSVC); err != nil {
+		panic(err)
+	}
+
+	logger.Println("Fare estimation completed, please check `testdata/result.csv` file..")
 }
 
 func handler(file string, csvReader appCSV.Reader, csvWriter appCSV.Writer, rideSVC rideUsecase.Service, fareSVC fareUsecase.Service) error {
