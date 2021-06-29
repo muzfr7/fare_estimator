@@ -9,6 +9,10 @@ import (
 	appCSV "github.com/muzfr7/fare_estimator/app/infrastructure/filesystem/csv"
 )
 
+const (
+	testFilePath = "../../../../testdata/paths_for_test.csv"
+)
+
 // TestRead is a unit test for Read method.
 func TestRead(t *testing.T) {
 	t.Parallel()
@@ -27,7 +31,7 @@ func TestRead(t *testing.T) {
 		{
 			name: "Happy path",
 			args: args{
-				filePath: "../../../../testdata/paths_for_test.csv",
+				filePath: testFilePath,
 			},
 			expectedRow:  []string{"1", "37.966660", "23.728308", "1405594957"},
 			expectedErr1: nil,
@@ -59,7 +63,7 @@ func TestRead(t *testing.T) {
 				return
 			}
 			if !reflect.DeepEqual(<-gotRowChan, <-rowChan) {
-				t.Errorf("Read() got row: %v, want: %v", <-gotRowChan, <-rowChan)
+				t.Errorf("Read() got row: %v, want row: %v", <-gotRowChan, <-rowChan)
 			}
 			if !reflect.DeepEqual(<-gotErrChan, <-errChan) {
 				t.Errorf("Read() got err: %v, want err: %v", <-gotErrChan, <-errChan)
