@@ -15,6 +15,8 @@ const (
 
 // TestWrite is a unit test for Write method.
 func TestWrite(t *testing.T) {
+	t.Parallel()
+
 	type args struct {
 		fare []string
 	}

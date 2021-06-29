@@ -14,6 +14,8 @@ import (
 
 // TestEstimate is a unit test for Estimate method.
 func TestEstimate(t *testing.T) {
+	t.Parallel()
+
 	type fields struct {
 		pathSVC pathUsecase.Service
 	}
