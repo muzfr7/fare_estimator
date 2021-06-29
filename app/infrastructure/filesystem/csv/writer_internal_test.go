@@ -21,7 +21,9 @@ func TestNewWriter(t *testing.T) {
 	}{
 		{
 			name: "Happy path",
-			want: &writerImpl{},
+			want: &writerImpl{
+				outputFile: testOutputFile,
+			},
 		},
 	}
 
