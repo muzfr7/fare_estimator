@@ -6,6 +6,8 @@ CLI_BIN = "./bin/fareestimatorcli"
 INPUT_CSV_FILE = "testdata/paths.csv"
 RESULT_CSV_FILE = "./testdata/result.csv"
 
+TEST_RESULT_CSV_FILE = "./testdata/result_for_test.csv"
+
 COVERAGE_PATH = "./..."
 COVERAGE_FILE = "testdata/coverage.out"
 
@@ -13,7 +15,7 @@ MOCK_GENERATE_PATH = "./..."
 
 # Remove generated binary, csv and coverage files
 clean:
-	@rm $(RESULT_CSV_FILE) $(CLI_BIN) $(COVERAGE_FILE)
+	@rm $(RESULT_CSV_FILE) $(TEST_RESULT_CSV_FILE) $(CLI_BIN) $(COVERAGE_FILE)
 
 # Generate mocks for interfaces
 mocks:
