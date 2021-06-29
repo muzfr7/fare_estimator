@@ -12,6 +12,10 @@ import (
 	logger "github.com/sirupsen/logrus"
 )
 
+const (
+	outputFile = "testdata/result.csv"
+)
+
 func main() {
 	file := flag.String("file", "", "-file paths.csv")
 	flag.Parse()
@@ -21,7 +25,7 @@ func main() {
 	}
 
 	csvReader := appCSV.NewReader()
-	csvWriter := appCSV.NewWriter()
+	csvWriter := appCSV.NewWriter(outputFile)
 
 	rideSVC := rideUsecase.NewService()
 	pathSVC := pathUsecase.NewService()

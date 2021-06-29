@@ -9,29 +9,29 @@ import (
 	"path/filepath"
 )
 
-const (
-	outputFile = "testdata/result.csv"
-)
-
 // Writer provides required methods to write csv.
 type Writer interface {
 	Write(in <-chan []string) (<-chan int, <-chan error, error)
 }
 
 // writerImpl implements Writer interface.
-type writerImpl struct{}
+type writerImpl struct {
+	outputFile string
+}
 
 // NewWriter returns a new instance of writerImpl.
-func NewWriter() Writer {
-	return &writerImpl{}
+func NewWriter(outputFile string) Writer {
+	return &writerImpl{
+		outputFile: outputFile,
+	}
 }
 
 // Write will write out estimated fares for each ride in a new csv file.
 func (w *writerImpl) Write(fareChan <-chan []string) (<-chan int, <-chan error, error) {
 	// create absolute path from given path
-	fullpath, err := filepath.Abs(outputFile)
+	fullpath, err := filepath.Abs(w.outputFile)
 	if err != nil {
-		return nil, nil, fmt.Errorf("invalid file path: %v; error: %v ", outputFile, err)
+		return nil, nil, fmt.Errorf("invalid file path: %v; error: %v ", w.outputFile, err)
 	}
 
 	// get parent directory path
@@ -40,7 +40,7 @@ func (w *writerImpl) Write(fareChan <-chan []string) (<-chan int, <-chan error, 
 	// set parent dir permissions to 0777
 	err = os.MkdirAll(dirpath, os.ModePerm)
 	if err != nil {
-		return nil, nil, fmt.Errorf("could not create path: %v; error: %v ", outputFile, err)
+		return nil, nil, fmt.Errorf("could not create path: %v; error: %v ", w.outputFile, err)
 	}
 
 	// create file
