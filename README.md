@@ -101,6 +101,11 @@ Clone this repository somewhere on your computer and make sure you have at-least
 git clone git@github.com:muzfr7/fare_estimator.git
 ```
 
+Downloads dependencies
+```
+go mod download
+```
+
 > make sure you have `paths.csv` file in `testdata` directory, because it will be ingested directly for fare estimation.
 
 ## Usage
