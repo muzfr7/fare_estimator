@@ -3,6 +3,8 @@
 bin/*
 !bin/.gitkeep
 
+testdata/result_for_test.csv
+
 .idea/
 .vscode/
 *sublime-project
