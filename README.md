@@ -101,7 +101,7 @@ Clone this repository somewhere on your computer and make sure you have at-least
 git clone git@github.com:muzfr7/fare_estimator.git
 ```
 
-Downloads dependencies
+To download dependencies, change directory into cloned `fare_estimator` repository and run following command
 ```
 go mod download
 ```
