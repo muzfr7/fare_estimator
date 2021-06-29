@@ -32,43 +32,57 @@ I could have gone with Golang's standard project layout, however, I chose Domain
 
 ### Directory structure
 ```
-├── app
-│   ├── domain
-│   │   ├── fare
-│   │   │   └── fare.go
-│   │   ├── path
-│   │   │   ├── path.go
-│   │   │   └── path_test.go
-│   │   └── ride
-│   │       └── ride.go
-│   ├── infrastructure
-│   │   └── filesystem
-│   │       └── csv
-│   │           ├── mocks
-│   │           ├── reader.go
-│   │           ├── reader_test.go
-│   │           ├── writer.go
-│   │           └── writer_test.go
-│   └── usecases
-│       ├── fare
-│       │   ├── mocks
-│       │   ├── service.go
-│       │   └── service_test.go
-│       ├── path
-│       │   ├── mocks
-│       │   ├── service.go
-│       │   └── service_test.go
-│       └── ride
-│           ├── mocks
-│           ├── service.go
-│           └── service_test.go
-├── cmd
-│   └── cli
-│       ├── main.go
-│       └── main_test.go
 ├── bin
+│   └── fareestimatorcli
+├── cmd
+│   └── cli
+│       ├── main.go
+│       └── main_test.go
+├── app
+│   ├── domain
+│   │   ├── fare
+│   │   │   └── fare.go
+│   │   ├── path
+│   │   │   ├── path.go
+│   │   │   └── path_test.go
+│   │   └── ride
+│   │       └── ride.go
+│   ├── infrastructure
+│   │   └── filesystem
+│   │       └── csv
+│   │           ├── mocks
+│   │           │   ├── Reader.go
+│   │           │   └── Writer.go
+│   │           ├── reader.go
+│   │           ├── reader_internal_test.go
+│   │           ├── reader_test.go
+│   │           ├── writer.go
+│   │           ├── writer_internal_test.go
+│   │           └── writer_test.go
+│   └── usecases
+│       ├── fare
+│       │   ├── mocks
+│       │   │   └── Service.go
+│       │   ├── service.go
+│       │   ├── service_internal_test.go
+│       │   └── service_test.go
+│       ├── path
+│       │   ├── mocks
+│       │   │   └── Service.go
+│       │   ├── service.go
+│       │   └── service_test.go
+│       └── ride
+│           ├── mocks
+│           │   └── Service.go
+│           ├── service.go
+│           ├── service_internal_test.go
+│           └── service_test.go
 ├── testdata
-│   └── paths.csv
+│   ├── coverage.out
+│   ├── paths.csv
+│   ├── paths_for_test.csv
+│   ├── result.csv
+│   └── result_for_test.csv
 ├── go.mod
 ├── go.sum
 ├── Makefile
