@@ -10,6 +10,7 @@ import (
 	pathDomain "github.com/muzfr7/fare_estimator/app/domain/path"
 	rideDomain "github.com/muzfr7/fare_estimator/app/domain/ride"
 	pathUsecase "github.com/muzfr7/fare_estimator/app/usecases/path"
+	pathUsecaseMocks "github.com/muzfr7/fare_estimator/app/usecases/path/mocks"
 )
 
 // TestNewService is a unit test for NewService method.
@@ -55,32 +56,41 @@ func TestEstimateFor(t *testing.T) {
 		ride *rideDomain.Ride
 	}
 
+	pathSVCMock := new(pathUsecaseMocks.Service)
+
 	testCases := []struct {
-		name         string
-		fields       fields
-		args         args
-		expectedFare *fareDomain.Fare
+		name             string
+		fields           fields
+		args             args
+		expectedDistance float64
+		expectedFare     *fareDomain.Fare
 	}{
 		{
 			name: "Happy path",
 			fields: fields{
-				pathSVC: nil,
+				pathSVC: pathSVCMock,
 			},
 			args: args{
 				ride: &rideDomain.Ride{
 					ID: 1,
 					Paths: []pathDomain.Path{
 						{
-							Latitude:  37.964168,
-							Longitude: 23.726123,
-							Timestamp: 1405595110,
+							Latitude:  37.966660,
+							Longitude: 23.728308,
+							Timestamp: 1405594957,
+						},
+						{
+							Latitude:  37.935490,
+							Longitude: 23.625655,
+							Timestamp: 1405596220,
 						},
 					},
 				},
 			},
+			expectedDistance: 9.12,
 			expectedFare: &fareDomain.Fare{
 				RideID:          1,
-				EstimatedAmount: 3.47,
+				EstimatedAmount: 8.0488,
 			},
 		},
 	}
@@ -90,6 +100,12 @@ func TestEstimateFor(t *testing.T) {
 			svc := &serviceImpl{
 				pathSVC: tc.fields.pathSVC,
 			}
+
+			startPath := tc.args.ride.Paths[0]
+			endPath := tc.args.ride.Paths[1]
+
+			// set expectations
+			pathSVCMock.On("CalculateDistance", startPath, endPath).Return(tc.expectedDistance)
 
 			if got := svc.estimateFor(tc.args.ride); !reflect.DeepEqual(got, tc.expectedFare) {
 				t.Errorf("estimateFor(): %v, want: %v", got, tc.expectedFare)
